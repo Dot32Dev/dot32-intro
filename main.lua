@@ -2,8 +2,8 @@ local intro = require("intro")
 
 intro:init()
 
-function love.update()
-	intro:update()
+function love.update(dt)
+	intro:update(dt)
 end
 
 function love.draw()
