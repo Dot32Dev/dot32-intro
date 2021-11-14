@@ -41,19 +41,10 @@ end
 
 function intro:update(dt)
   if not dt then
-    -- error("dt is required for intro.update(dt)")
-    dt = 1/60
+    error("dt is required for intro.update(dt)")
   end
-  -- self.dot32.yV = self.dot32.yV + ((self.phase == 1 and (love.graphics.getHeight()/2 - self.dot32.y)*0.5) or 0)
-  -- self.dot32.y = self.dot32.y + self.dot32.yV/2
-  -- self.dot32.yV = self.dot32.yV * 0.6
 
   self.dot32.y = self.easeOutElastic(self.timer)*love.graphics.getHeight()/2
-
-  -- self.sub.xV = self.sub.xV + (love.graphics.getWidth()/2 - self.sub.x)*0.5
-  -- self.sub.x = self.sub.x + self.sub.xV/2
-  -- self.sub.xV = self.sub.xV * 0.6
-  
   self.sub.x = self.easeOutElastic(self.timer)*love.graphics.getWidth()/2
 
   self.timer = self.timer + dt
@@ -119,14 +110,6 @@ function intro.pprint(stringg, x, y)
   love.graphics.setColour(r,g,b,a)
 end
 
--- function love.keypressed(key)
-  -- if key == "f" and love.keyboard.isDown("lgui") and love.keyboard.isDown("lctrl") and operatingSystem == "OS X" then
-  --     love.window.setFullscreen(true)
-  -- end
-  -- if key == "f11" and operatingSystem == "Windows" then
-  --     love.window.setFullscreen(true)
-  -- end
--- end
 function intro.varToString(var) -- thank you so much HugoBDesigner! (https://love2d.org/forums/viewtopic.php?t=82877)
   if type(var) == "string" then
     return "\"" .. var .. "\""
