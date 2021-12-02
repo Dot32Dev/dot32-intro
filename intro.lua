@@ -108,6 +108,10 @@ function intro.pprint(stringg, x, y)
   love.graphics.setColour(r,g,b,a)
 end
 
+function intro.distanceBetween(x1, y1, x2, y2)
+  return math.sqrt((y2-y1)^2 + (x2-x1)^2)
+end
+
 function intro.varToString(var) -- thank you so much HugoBDesigner! (https://love2d.org/forums/viewtopic.php?t=82877)
   if type(var) == "string" then
     return "\"" .. var .. "\""
