@@ -42,8 +42,6 @@ function intro:update(dt)
     error("dt is required for intro.update(dt)")
   end
 
-  -- self.dot32.y = self.easeOutElastic(self.timer)*love.graphics.getHeight()/2
-  -- self.sub.x = self.easeOutElastic(self.timer)*love.graphics.getWidth()/2
 
   self.timer = self.timer + dt
   
@@ -96,6 +94,38 @@ function intro.HSL(h, s, l, a)
   elseif h < 5 then r,g,b = x,0,c
   else              r,g,b = c,0,x
   end return (r+m),(g+m),(b+m),a
+end
+
+-- Written by ShinyOgre#3194 on the love2D discord server
+function intro.hex(hexcolor)
+  --strip the # if present
+  if string.sub(hexcolor,1,1) == "#" then
+    hexcolor = string.sub(hexcolor,2)
+  end
+  --check to see if there is an appropriate amount of characters
+  if string.len(hexcolor) < 6 and string.len(hexcolor) ~= 3 then
+    return error("Requires 3 or 6 values to convert from hex")
+  elseif string.len(hexcolor) == 3 then --supports 3-digit shorthand
+    hexcolor = string.sub(hexcolor,1,1)..
+    string.sub(hexcolor,1,1)..
+    string.sub(hexcolor,2,2)..
+    string.sub(hexcolor,2,2)..
+    string.sub(hexcolor,3,3)..
+    string.sub(hexcolor,3,3)
+  end
+  local function stringToNum(s,position)
+    if s == "A" then s = 10 end
+    if s == "B" then s = 11 end
+    if s == "C" then s = 12 end
+    if s == "D" then s = 13 end
+    if s == "E" then s = 14 end
+    if s == "F" then s = 15 end
+    return s * (16^position) --converting to base 16 number
+  end
+  return --(r,g,b respectively)
+  (stringToNum(string.sub(hexcolor,1,1),1) + stringToNum(string.sub(hexcolor,2,2),0))/255,
+  (stringToNum(string.sub(hexcolor,3,3),1) + stringToNum(string.sub(hexcolor,4,4),0))/255,
+  (stringToNum(string.sub(hexcolor,5,5),1) + stringToNum(string.sub(hexcolor,6,6),0))/255
 end
 
 function intro.pprint(stringg, x, y)
