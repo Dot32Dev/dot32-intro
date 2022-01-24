@@ -1,4 +1,4 @@
-local intro = {length = 10.5, sustain = 0.2}
+local intro = {length = 0.5, sustain = 0.2}
 
 intro.project = {}
 intro.project.font = love.graphics.newFont("fonts/Public_Sans/static/PublicSans-Black.ttf", 20)
