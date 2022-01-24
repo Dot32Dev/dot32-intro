@@ -37,7 +37,7 @@ end
 
 function intro:update(dt)
   if not dt then
-    error("dt is required for intro.update(dt)")
+    error("dt is required for intro:update(dt)")
   end
 
 
