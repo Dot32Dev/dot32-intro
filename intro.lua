@@ -1,4 +1,4 @@
-local intro = {length = 0.5, sustain = 0.2}
+local intro = {length = 10.5, sustain = 0.2}
 
 intro.project = {}
 intro.project.font = love.graphics.newFont("fonts/Public_Sans/static/PublicSans-Black.ttf", 20)
@@ -44,6 +44,9 @@ function intro:update(dt)
 
 
   self.timer = self.timer + dt
+
+  self.dot32.x = love.graphics.getWidth()/2
+  self.sub.y = love.graphics.getHeight()/1.65
   
   if self.timer > self.length then
     self.phase = 2
