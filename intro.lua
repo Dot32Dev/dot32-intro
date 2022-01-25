@@ -13,12 +13,10 @@ end
 function intro:init(subtext)
   self.dot32 = {}
   self.dot32.font = love.graphics.newFont("fonts/PT_Sans/PTSans-Bold.ttf", 100)
-  self.dot32.x = love.graphics.getWidth()/2
 
   self.sub = {}
   self.sub.font = love.graphics.newFont("fonts/PT_Sans/PTSans-Regular.ttf", 45)
   self.sub.text = subtext or "Games"
-  self.sub.y = love.graphics.getHeight()/1.65
 
   self.timer = 0
   self.phase = 1
@@ -40,11 +38,7 @@ function intro:update(dt)
     error("dt is required for intro:update(dt)")
   end
 
-
   self.timer = self.timer + dt
-
-  self.dot32.x = love.graphics.getWidth()/2
-  self.sub.y = love.graphics.getHeight()/1.65
   
   if self.timer > self.length then
     self.phase = 2
@@ -68,9 +62,9 @@ function intro:draw()
 
     love.graphics.setColor(1, 1, 1, self.ghost)
     love.graphics.setFont(self.dot32.font)
-    love.graphics.print("Dot32", self.dot32.x - self.dot32.font:getWidth("Dot32")/2, self.easeOutElastic(self.timer)*love.graphics.getHeight()/2 - self.dot32.font:getHeight()/2)
+    love.graphics.print("Dot32", love.graphics.getWidth()/2 - self.dot32.font:getWidth("Dot32")/2, self.easeOutElastic(self.timer)*love.graphics.getHeight()/2 - self.dot32.font:getHeight()/2)
     love.graphics.setFont(self.sub.font)
-    love.graphics.print(self.sub.text, self.easeOutElastic(self.timer)*love.graphics.getWidth()/2 - self.sub.font:getWidth(self.sub.text)/2, self.sub.y - self.sub.font:getHeight()/2)
+    love.graphics.print(self.sub.text, self.easeOutElastic(self.timer)*love.graphics.getWidth()/2 - self.sub.font:getWidth(self.sub.text)/2, love.graphics.getHeight()/1.65 - self.sub.font:getHeight()/2)
 
     love.graphics.setColor(0.2, 0.2, 0.2, self.ghost)
     love.graphics.rectangle("fill", 0, love.graphics.getHeight()-5, love.graphics.getWidth()-(love.graphics.getWidth()/self.length)*self.timer, 5)
